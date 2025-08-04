@@ -16,6 +16,12 @@ Playlist::~Playlist() {
 }
 
 void Playlist::addSong(const Song& song) {
+    // ✅ Prevent adding if artist is blocked
+    if (isBlocked(song.artist)) {
+        std::cout << "Cannot add \"" << song.title << "\" by " << song.artist << " (artist is blocked).\n";
+        return;
+    }
+
     Node* newNode = new Node(song);
     if (!head) {
         head = tail = newNode;
@@ -26,6 +32,23 @@ void Playlist::addSong(const Song& song) {
     }
     size++;
 }
+
+// ✅ Blocklist methods
+
+void Playlist::blockArtist(const std::string& artistName) {
+    blockedArtists.insert(artistName);
+    std::cout << "Artist \"" << artistName << "\" has been blocked.\n";
+}
+
+void Playlist::unblockArtist(const std::string& artistName) {
+    blockedArtists.erase(artistName);
+    std::cout << "Artist \"" << artistName << "\" has been unblocked.\n";
+}
+
+bool Playlist::isBlocked(const std::string& artistName) const {
+    return blockedArtists.find(artistName) != blockedArtists.end();
+}
+
 
 void Playlist::deleteSong(int index) {
     if (index < 0 || index >= size) return;

@@ -4,6 +4,7 @@
 #include "Song.h"
 #include <iostream>
 #include <functional>
+#include <unordered_set>  // ✅ for blocklist
 
 class Playlist {
 private:
@@ -18,17 +19,12 @@ private:
     Node* tail;
     int size;
 
-    Node* getNodeAt(int index) const;  // Add 'const'
+    Node* getNodeAt(int index) const;
+
+    // ✅ Blocklist
+    std::unordered_set<std::string> blockedArtists;
 
 public:
-    // int getSize() const;
-    // Song getSongAt(int index) const;
-    void clear();
-
-    int getSize() const;
-    Song getSongAt(int index) const;
-
-
     Playlist();
     ~Playlist();
 
@@ -37,11 +33,19 @@ public:
     void moveSong(int fromIndex, int toIndex);
     void reversePlaylist();
     void display() const;
-    void sort(std::function<bool(const Song&, const Song&)> comparator);
+    void clear();
 
-    // Add these if you're using a sorting module
+    int getSize() const;
+    Song getSongAt(int index) const;
+
+    void sort(std::function<bool(const Song&, const Song&)> comparator);
     void sortByTitle();
     void sortByDuration();
+
+    // ✅ Blocklist functions
+    void blockArtist(const std::string& artistName);
+    void unblockArtist(const std::string& artistName);
+    bool isBlocked(const std::string& artistName) const;
 };
 
 #endif

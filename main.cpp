@@ -119,5 +119,18 @@ int main() {
     }
 
 
+        std::cout << "\nBlocking artist 'Dua Lipa'...\n";
+        playlist.blockArtist("Dua Lipa");
+
+        std::cout << "Trying to add song by Dua Lipa again:\n";
+        playlist.addSong(Song("5", "New Rules", "Dua Lipa", 230));  // Should be blocked
+
+        std::cout << "Trying to add song by Lata mangeshkar:\n";
+        playlist.addSong(Song("6", "Tere Bina Zindagi", "Lata mangeshkar", 270));  // Should be added
+
+        std::cout << "\nUpdated playlist after blocking:\n";
+        playlist.display();
+
+
     return 0;
 }
