@@ -16,7 +16,7 @@ Playlist::~Playlist() {
 }
 
 void Playlist::addSong(const Song& song) {
-    // ✅ Prevent adding if artist is blocked
+    // Prevent adding if artist is blocked
     if (isBlocked(song.artist)) {
         std::cout << "Cannot add \"" << song.title << "\" by " << song.artist << " (artist is blocked).\n";
         return;
@@ -33,7 +33,7 @@ void Playlist::addSong(const Song& song) {
     size++;
 }
 
-// ✅ Blocklist methods
+// Blocklist methods
 
 void Playlist::blockArtist(const std::string& artistName) {
     blockedArtists.insert(artistName);
