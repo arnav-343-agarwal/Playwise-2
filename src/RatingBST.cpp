@@ -90,3 +90,4 @@ RatingBST::Node* RatingBST::findMin(Node* node) {
 void RatingBST::deleteSong(const std::string& songId) {
     root = remove(root, songId);
 }
+

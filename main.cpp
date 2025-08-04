@@ -102,5 +102,22 @@ int main() {
     }
 
 
+
+
+    std::cout << "\nSorting playlist by title:\n";
+    playlist.sortByTitle();
+    for (int i = 0; i < playlist.getSize(); ++i) {
+        Song song = playlist.getSongAt(i);
+        std::cout << song.title << " by " << song.artist << "\n";
+    }
+
+    std::cout << "\nSorting playlist by duration:\n";
+    playlist.sortByDuration();
+    for (int i = 0; i < playlist.getSize(); ++i) {
+        Song song = playlist.getSongAt(i);
+        std::cout << song.title << " - " << song.duration << "s\n";
+    }
+
+
     return 0;
 }
